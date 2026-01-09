@@ -1,0 +1,7 @@
+id: F-1200-evaluate-hard-gates
+title: Evaluate Hard Gates
+description: |
+  Evaluate AI-core, work-mode, and compensation hard constraints.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - Immediate reject on failure

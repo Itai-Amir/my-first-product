@@ -1,0 +1,10 @@
+id: F-1000-persist-knowledge-pack
+title: Persist Candidate Knowledge Pack
+description: |
+  Persist the candidate's structured Knowledge Pack as the single deterministic
+  source of truth. Implement save/load round-trip to local storage.
+verify_command: python candidate/verify_F_1000.py
+acceptance_criteria:
+  - Save/load round-trip is byte-identical
+  - No unrelated files modified
+  - All tests pass

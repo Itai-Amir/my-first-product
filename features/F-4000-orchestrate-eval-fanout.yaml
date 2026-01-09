@@ -1,0 +1,7 @@
+id: F-4000-orchestrate-eval-fanout
+title: Orchestrate Evaluation Fan-Out
+description: |
+  Dispatch job profiles to candidate agents and collect results deterministically.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - All responses collected

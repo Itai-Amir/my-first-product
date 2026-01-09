@@ -1,9 +1,13 @@
 import json
 import sys
+
 from pathlib import Path
 
 from create_feature_pr import main as create_features
 from approve_feature import approve
+from implement_feature import implement
+from verify_feature import verify
+
 
 STATE_PATH = Path("../state/progress.json")
 
@@ -19,7 +23,6 @@ def save_state(state):
 
 
 def main():
-    # Explicit planning mode (Approach B)
     if "--auto-plan" in sys.argv:
         import subprocess
         subprocess.run(["python", "copilot_plan.py"], check=True)
@@ -27,11 +30,6 @@ def main():
 
     while True:
         state = load_state()
-
-        # Fail fast on corrupted state
-        if "phase" not in state or "current_feature" not in state:
-            raise RuntimeError("Invalid progress.json structure")
-
         phase = state["phase"]
         feature = state["current_feature"]
 
@@ -40,7 +38,9 @@ def main():
             state["phase"] = "PLANNING"
 
         elif phase == "PLANNING":
-            if state["current_feature"] is None:
+            if state["current_feature"] is not None:
+                pass
+            else:
                 create_features()
                 state = load_state()
 
@@ -52,29 +52,24 @@ def main():
         elif phase == "APPROVE":
             approve(feature)
 
-            # APPROVE commits to disk → move to IMPLEMENT and stop
-            state = load_state()
-            state["phase"] = "IMPLEMENT"
-            save_state(state)
+            # state was modified on disk → reload and stop
             return
 
         elif phase == "IMPLEMENT":
             import subprocess
             subprocess.run(["python", "copilot_implement.py"], check=True)
 
-            # IMPLEMENT is blocking → advance to VERIFY and stop
-            state["phase"] = "VERIFY"
+            # STOP here – wait for Copilot implementation
             save_state(state)
             return
 
         elif phase == "VERIFY":
             import subprocess
+            from pathlib import Path
 
             feature_file = Path(f"../features/{feature}.yaml")
-            if not feature_file.exists():
-                raise RuntimeError(f"Missing feature file: {feature_file}")
-
             verify_command = None
+
             with open(feature_file) as f:
                 for line in f:
                     if line.strip().startswith("verify_command:"):
@@ -82,21 +77,14 @@ def main():
                         break
 
             if verify_command:
-                try:
-                    subprocess.run(
-                        verify_command.split(),
-                        check=True,
-                        cwd=Path("..")
-                    )
-                except subprocess.CalledProcessError:
-                    print("VERIFY FAILED")
-                    return
-            else:
-                print("No verify_command; marking feature as completed.")
+                subprocess.run(
+                    verify_command.split(),
+                    check=True,
+                    cwd=Path("..")
+                )
 
             state["phase"] = "COMPLETED"
-            if feature not in state["completed_features"]:
-                state["completed_features"].append(feature)
+            state["completed_features"].append(feature)
 
         elif phase == "COMPLETED":
             state["current_feature"] = None

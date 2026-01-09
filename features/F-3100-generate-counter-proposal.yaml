@@ -1,0 +1,7 @@
+id: F-3100-generate-counter-proposal
+title: Generate Counter Proposal
+description: |
+  Generate minimum required counter adjustments for failed overlap.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - No optional asks

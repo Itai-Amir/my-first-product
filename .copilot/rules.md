@@ -15,3 +15,11 @@ Feature rules:
 State rules:
 - progress.json is the single source of truth.
 - Do not guess state. Always read it.
+
+Execution rules:
+- Do not describe your plan or intentions.
+- Do not narrate actions or progress.
+- Do not run tests unless explicitly asked by the engine.
+- Do not modify progress.json or state files.
+- Only implement code required by the current feature.
+- Output nothing except code changes or a single-line "Done".

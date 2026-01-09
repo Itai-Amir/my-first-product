@@ -1,11 +1,9 @@
 {
-  "phase": "PLANNING",
-  "current_feature": null,
+  "phase": "VERIFY",
+  "current_feature": "F-1200-evaluate-hard-gates",
   "completed_features": [
-    "F-0001",
-    "F-0002",
-    "F-0100",
-    "F-0200"
+    "F-1000-persist-knowledge-pack",
+    "F-1100-load-knowledge-pack"
   ],
   "status": "READY"
 }

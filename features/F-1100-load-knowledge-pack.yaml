@@ -1,0 +1,8 @@
+id: F-1100-load-knowledge-pack
+title: Load Knowledge Pack as Immutable Source
+description: |
+  Load persisted knowledge pack into an immutable in-memory representation.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - Mutation attempts fail
+  - Identical reloads

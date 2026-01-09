@@ -1,0 +1,7 @@
+id: F-1210-compute-match-score
+title: Compute Match Score
+description: |
+  Compute weighted deterministic match score given job profile and knowledge pack.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - Identical input => identical score

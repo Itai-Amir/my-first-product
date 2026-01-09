@@ -1,0 +1,7 @@
+id: F-4100-filter-by-match-threshold
+title: Filter by Match Threshold
+description: |
+  Filter evaluation results using a fixed threshold.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - Correct filtering

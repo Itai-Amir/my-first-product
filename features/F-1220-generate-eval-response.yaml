@@ -1,0 +1,7 @@
+id: F-1220-generate-eval-response
+title: Generate Match Evaluation Response
+description: |
+  Produce structured evaluation response from gate result and score breakdown.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - Schema compliant output

@@ -1,0 +1,7 @@
+id: F-5000-trigger-human-escalation
+title: Trigger Human Escalation
+description: |
+  Emit escalation signal when match and negotiation criteria are met.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - Trigger only on full alignment

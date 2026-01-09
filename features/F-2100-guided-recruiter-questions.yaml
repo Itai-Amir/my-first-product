@@ -1,0 +1,7 @@
+id: F-2100-guided-recruiter-questions
+title: Guided Recruiter Questions
+description: |
+  Ask fixed clarifying questions when Job Profile fields are missing.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - Questions shown only when required

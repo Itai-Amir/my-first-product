@@ -1,0 +1,7 @@
+id: F-3000-evaluate-compensation-overlap
+title: Evaluate Compensation Overlap
+description: |
+  Check numeric overlap between candidate expectations and company band.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - Correct overlap detection

@@ -1,0 +1,7 @@
+id: F-2000-normalize-job-description
+title: Normalize Job Description
+description: |
+  Convert recruiter input into a structured Job Profile deterministically.
+verify_command: echo "verify not implemented"
+acceptance_criteria:
+  - Deterministic normalization
